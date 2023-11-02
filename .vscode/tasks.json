@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"label": "clean",
-			"command": "dotnet",
+			"command": "dotnet-isolated",
 			"args": [
 				"clean",
 				"/property:GenerateFullPaths=true",
@@ -17,7 +17,7 @@
 		},
 		{
 			"label": "build",
-			"command": "dotnet",
+			"command": "dotnet-isolated",
 			"args": [
 				"build",
 				"/property:GenerateFullPaths=true",
@@ -36,7 +36,7 @@
 		},
 		{
 			"label": "clean release",
-			"command": "dotnet",
+			"command": "dotnet-isolated",
 			"args": [
 				"clean",
 				"--configuration",
@@ -52,7 +52,7 @@
 		},
 		{
 			"label": "publish",
-			"command": "dotnet",
+			"command": "dotnet-isolated",
 			"args": [
 				"publish",
 				"--configuration",
@@ -71,7 +71,7 @@
 			"type": "func",
 			"dependsOn": "build",
 			"options": {
-				"cwd": "${workspaceFolder}/functions\\iothubingest/bin/Debug/netcoreapp3.1"
+				"cwd": "${workspaceFolder}/functions\\iothubingest/bin/Debug/netapp6.0"
 			},
 			"command": "host start",
 			"isBackground": true,
