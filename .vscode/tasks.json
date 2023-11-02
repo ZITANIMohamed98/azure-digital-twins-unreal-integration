@@ -71,7 +71,7 @@
 			"type": "func",
 			"dependsOn": "build",
 			"options": {
-				"cwd": "${workspaceFolder}/functions\\iothubingest/bin/Debug/netapp6.0"
+				"cwd": "${workspaceFolder}/functions\\iothubingest/bin/Debug/net6.0"
 			},
 			"command": "host start",
 			"isBackground": true,

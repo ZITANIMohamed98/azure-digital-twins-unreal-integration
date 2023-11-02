@@ -1,6 +1,6 @@
 {
     "cmake.configureOnOpen": false,
-    "azureFunctions.deploySubpath": "functions\\iothubingest/bin/Release/netapp6.0/publish",
+    "azureFunctions.deploySubpath": "functions\\iothubingest/bin/Release/net6.0/publish",
     "azureFunctions.projectLanguage": "C#",
     "azureFunctions.projectRuntime": "~6",
     "debug.internalConsoleOptions": "neverOpen",
