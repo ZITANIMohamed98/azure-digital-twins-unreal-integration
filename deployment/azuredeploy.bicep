@@ -303,11 +303,11 @@ resource funcApp 'Microsoft.Web/sites@2021-01-15' = {
       appSettings: [
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
-          value: 'dotnet'
+          value: 'dotnet-isolated'
         }
         {
           name: 'FUNCTIONS_EXTENSION_VERSION'
-          value: '~3'
+          value: '~4'
         }
         {
           name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
@@ -364,7 +364,7 @@ resource funcApp 'Microsoft.Web/sites@2021-01-15' = {
 
 // deploy the code for the two azure functionss (iot hub ingest and signalr)
 resource funcAppDeploy 'Microsoft.Web/sites/extensions@2020-12-01' = {
-  name: '${funcApp.name}/MSDeploy'
+  name: '${funcApp.name}/ZipDeploy'
   properties: {
     packageUri: funcPackageUri
   }
