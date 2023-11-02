@@ -303,11 +303,11 @@ resource funcApp 'Microsoft.Web/sites@2021-01-15' = {
       appSettings: [
         {
           name: 'FUNCTIONS_WORKER_RUNTIME'
-          value: 'dotnet-isolated'
+          value: 'dotnet'
         }
         {
           name: 'FUNCTIONS_EXTENSION_VERSION'
-          value: '~4'
+          value: '~3'
         }
         {
           name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
@@ -663,7 +663,7 @@ resource webApp 'Microsoft.Web/sites@2021-01-15' = {
 
 // deploy the code for the web app
 resource webAppDeploy 'Microsoft.Web/sites/extensions@2020-12-01' = {
-  name: '${webApp.name}/MSDeploy'
+  name: '${webApp.name}/ZipDeploy'
   properties: {
     packageUri: webAppPackageUri
   }
