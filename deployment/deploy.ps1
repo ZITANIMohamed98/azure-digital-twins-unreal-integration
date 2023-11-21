@@ -443,7 +443,7 @@ function New-Deployment() {
         "appRegPassword"           = @{ "value" = $script:appRegSecret.password }
         "servicePrincipalObjectId" = @{ "value" = $script:service_ppal.id }
         "tenantId"                 = @{ "value" = $script:appRegSecret.tenant }
-        "repoOrgName"              = @{ "value" = "Azure-Samples" }
+        "repoOrgName"              = @{ "value" = "ZITANIMohamed98" }
         "repoName"                 = @{ "value" = "azure-digital-twins-unreal-integration" }
         "repoBranchName"           = @{ "value" = $(git rev-parse --abbrev-ref HEAD) }
     }
