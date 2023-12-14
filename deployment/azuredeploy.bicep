@@ -42,7 +42,8 @@ var tsiWarmStoreDataRetention = 'P7D'
 var tsiEventSourceName = ehTsiName
 
 // Update later when repo becomes public
-var funcPackageUri = 'https://github.com/${repoOrgName}/${repoName}/raw/${repoBranchName}/function-code/UnrealIoTIngest/funcapp-deploy.zip'
+//var funcPackageUri = 'https://github.com/${repoOrgName}/${repoName}/raw/${repoBranchName}/function-code/UnrealIoTIngest/funcapp-deploy.zip'
+var funcPackageUri = 'https://zitanijsfuncapp.scm.azurewebsites.net/api/vfs/azure-digital-twins-unreal-integration/function-code/UnrealIoTIngest/funcapp-deploy.zip'
 var webAppPackageUri = 'https://github.com/${repoOrgName}/${repoName}/raw/${repoBranchName}/webapp-code/TsiWebApp/webapp-deploy.zip'
 var azDtCreateScriptUri = 'https://github.com/${repoOrgName}/${repoName}/raw/${repoBranchName}/deployment/scripts/az-dt-route-create.sh'
 
