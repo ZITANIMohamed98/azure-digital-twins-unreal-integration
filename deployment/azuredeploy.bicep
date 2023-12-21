@@ -187,7 +187,7 @@ resource iot 'microsoft.devices/iotHubs@2020-03-01' = {
     }
   }
   dependsOn: [
-    funcAppDeploy //hackhack - make as much as possible 'dependon' the azure function app to deal w/ some timing issues
+    //funcAppDeploy //hackhack - make as much as possible 'dependon' the azure function app to deal w/ some timing issues
   ]
 }
 
@@ -320,6 +320,10 @@ resource funcApp 'Microsoft.Web/sites@2021-01-15' = {
           value: appInsights.properties.ConnectionString
         }
         {
+          name: 'WEBSITE_RUN_FROM_PACKAGE'
+          value: 'https://appservicesstorageacc.blob.core.windows.net/freepalestine/funcapp-deploy%20(1).zip?sp=rw&st=2023-12-20T14:52:38Z&se=2023-12-20T22:52:38Z&spr=https&sv=2022-11-02&sr=b&sig=zWPzF3uZ2T7gXW43%2BVKYffbJD2nI%2B72PAryMPUfTewI%3D'
+        }
+        {
           name: 'AzureWebJobsStorage'
           value: 'DefaultEndpointsProtocol=https;AccountName=${storageName};AccountKey=${listKeys(storageName, '2019-06-01').keys[0].value}'
         }
@@ -365,15 +369,15 @@ resource funcApp 'Microsoft.Web/sites@2021-01-15' = {
 }
 
 // deploy the code for the two azure functionss (iot hub ingest and signalr)
-resource funcAppDeploy 'Microsoft.Web/sites/extensions@2020-12-01' = {
-  name: '${funcApp.name}/ZipDeploy'
-  properties: {
-    packageUri: funcPackageUri
-  }
-  dependsOn: [
-    funcApp
-  ]
-}
+//resource funcAppDeploy 'Microsoft.Web/sites/extensions@2020-12-01' = {
+//  name: '${funcApp.name}/ZipDeploy'
+//  properties: {
+//    packageUri: funcPackageUri
+//  }
+//  dependsOn: [
+//    funcApp
+//  ]
+//}
 
 // event grid topic that iot hub posts telemetry messages to
 resource eventGridIngestTopic 'Microsoft.EventGrid/systemTopics@2020-04-01-preview' = {
@@ -386,7 +390,7 @@ resource eventGridIngestTopic 'Microsoft.EventGrid/systemTopics@2020-04-01-previ
   }
   dependsOn: [
     iot
-    funcAppDeploy
+   // funcAppDeploy
   ]
 }
 
@@ -411,7 +415,7 @@ resource eventGridIoTHubIngest 'Microsoft.EventGrid/systemTopics/eventSubscripti
   }
   dependsOn: [
     iot
-    funcAppDeploy
+   // funcAppDeploy
     eventGridIngestTopic
   ]
 }
@@ -433,7 +437,7 @@ resource eventGridADTChangeLogTopic 'Microsoft.EventGrid/topics@2020-10-15-previ
     publicNetworkAccess: 'Enabled'
   }
   dependsOn: [
-    funcAppDeploy
+    //funcAppDeploy
     iot //hackhack - make this run as late as possible because of a tricky timing issue w/ the /broadcast function
     eventGridIoTHubIngest
     rgroledef
@@ -459,7 +463,6 @@ resource eventGridSignalr 'Microsoft.EventGrid/eventSubscriptions@2020-06-01' = 
     }
   }
   dependsOn: [
-    funcAppDeploy
     eventGridADTChangeLogTopic
   ]
 }
